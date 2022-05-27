@@ -58,6 +58,7 @@ runs:
         TAG: ${{ github.sha }}
       shell: bash
       run: |
+        docker-compose -f docker/docker-compose.local.yml build
         docker-compose -f docker/docker-compose.local.yml up
 #       run: |
 #         docker image ls
