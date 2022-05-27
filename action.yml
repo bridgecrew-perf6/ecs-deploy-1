@@ -62,7 +62,7 @@ runs:
         docker tag docker_spica-server:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker-compose -f docker/docker-compose.local.yml push $ECR_REGISTRY/$ECR_REPOSITORY:$TAG
         docker-compose -f docker/docker-compose.local.yml push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$latest"
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
     # - name: Build, tag, and push image to Amazon ECR
     #   id: build-image
