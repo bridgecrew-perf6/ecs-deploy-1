@@ -58,6 +58,7 @@ runs:
         TAG: ${{ github.sha }}
       shell: bash
       run: |
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker-compose -f docker/docker-compose.local.yml push
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$TAG"
 
