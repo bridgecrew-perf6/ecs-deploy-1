@@ -55,7 +55,7 @@ runs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ inputs.ecr-repo }}
-        TAG: ${{ github.sha }}
+        TAG: latest
       shell: bash
       run: |
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
