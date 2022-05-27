@@ -46,6 +46,7 @@ runs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, to Amazon ECR
+      shell: bash
       run: |
         docker-compose -f docker/docker-compose.local.yml build
     
@@ -54,6 +55,7 @@ runs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ inputs.ecr-repo }}
         TAG: ${{ github.sha }}
+      shell: bash
       run: |
         docker-compose -f docker/docker-compose.local.yml push
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$TAG"
