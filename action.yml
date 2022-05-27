@@ -55,7 +55,7 @@ runs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ inputs.ecr-repo }}
-        TAG: latest
+        TAG: 90db6a66beb7c325f21f9a624264772fccde7d77, latest
       shell: bash
       run: |
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
