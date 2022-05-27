@@ -58,6 +58,7 @@ runs:
 #         TAG: 90db6a66beb7c325f21f9a624264772fccde7d77
       shell: bash
       run: |
+        docker image ls
         docker tag spica:latest 203243235780.dkr.ecr.ap-northeast-2.amazonaws.com/spica:latest
         docker-compose -f docker/docker-compose.local.yml push
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$TAG"
