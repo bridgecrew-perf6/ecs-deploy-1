@@ -45,10 +45,10 @@ runs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, to Amazon ECR
-      shell: bash
-      run: |
-        docker-compose -f docker/docker-compose.local.yml build
+#     - name: Build, to Amazon ECR
+#       shell: bash
+#       run: |
+#         docker-compose -f docker/docker-compose.local.yml build
     
     - name: push image to Amazon ECR
       id: build-image
@@ -58,10 +58,12 @@ runs:
         TAG: ${{ github.sha }}
       shell: bash
       run: |
-        docker image ls
-        docker tag docker_spica-server:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
+        docker-compose -f docker/docker-compose.local.yml up
+#       run: |
+#         docker image ls
+#         docker tag docker_spica-server:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
+#         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+#         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
 
     # - name: Build, tag, and push image to Amazon ECR
     #   id: build-image
