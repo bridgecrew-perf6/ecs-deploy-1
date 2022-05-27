@@ -51,6 +51,7 @@ runs:
         docker-compose -f docker/docker-compose.local.yml build
     
     - name: push image to Amazon ECR
+      id: build-image
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ inputs.ecr-repo }}
