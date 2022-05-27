@@ -55,12 +55,12 @@ runs:
       env: 
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ inputs.ecr-repo }}
-#         TAG: 90db6a66beb7c325f21f9a624264772fccde7d77
+        TAG: ${{ github.sha }}
       shell: bash
       run: |
         docker image ls
-        docker tag docker_spica-server $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        docker-compose -f docker/docker-compose.local.yml push
+        docker tag docker_spica-server:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        docker-compose -f docker/docker-compose.local.yml push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$TAG"
 
     # - name: Build, tag, and push image to Amazon ECR
